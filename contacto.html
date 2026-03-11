@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Contacto | FUTBOL IA</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0a0a0a;
+    color: white;
+}
+
+/* BOTON VOLVER FLOTANTE */
+.volver {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #00ff66;
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.volver:hover {
+    background: #00cc55;
+}
+
+/* TITULO */
+.titulo {
+    text-align: center;
+    padding: 40px;
+}
+.titulo h1 {
+    color: #00ff66;
+    font-size: 40px;
+}
+.titulo p {
+    color: #aaa;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.contenedor {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px;
+    flex-wrap: wrap;
+}
+
+/* FORMULARIO */
+.contacto {
+    background: #111;
+    padding: 35px;
+    border-radius: 10px;
+    width: 450px;
+    border: 1px solid #00ff66;
+    box-shadow: 0 0 20px rgba(0, 255, 100, 0.2);
+}
+.contacto h2 {
+    color: #00ff66;
+    margin-bottom: 20px;
+}
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background: #1c1c1c;
+    color: white;
+}
+textarea {
+    resize: none; /* No permitir redimensionar */
+}
+
+/* BOTON ENVIAR */
+button.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: #00ff66;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button.submit-btn:hover {
+    background: #00cc55;
+}
+
+/* PANEL LATERAL */
+.sidebar {
+    width: 260px;
+}
+.card {
+    background: #111;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #00ff66;
+}
+.card h3 {
+    color: #00ff66;
+    margin-bottom: 10px;
+}
+a {
+    color: #00ff66;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+</style>
+</head>
+<body>
+
+<!-- BOTON VOLVER FLOTANTE -->
+<button class="volver" onclick="history.back()">⬅ Volver</button>
+
+<div class="titulo">
+    <h1>Contacto FUTBOL IA ⚽</h1>
+    <p>Comunícate con nosotros para colaboraciones, empresas o inversiones.</p>
+</div>
+
+<div class="contenedor">
+
+    <!-- FORMULARIO -->
+    <div class="contacto">
+        <h2>Enviar mensaje</h2>
+        <form id="contactForm" action="https://formspree.io/f/xkoqnqvb" method="POST">
+            <input type="text" name="Nombre" placeholder="Tu nombre" required>
+            <input type="email" name="Email" placeholder="Tu correo" required>
+            <textarea name="Mensaje" rows="5" placeholder="Escribe tu mensaje" required></textarea>
+            <button type="submit" class="submit-btn">Enviar mensaje</button>
+        </form>
+    </div>
+
+    <!-- PANEL LATERAL -->
+    <div class="sidebar">
+        <div class="card">
+            <h3>👁 Visitas</h3>
+            <p>12,540 visitantes</p>
+        </div>
+
+        <div class="card">
+            <h3>🏢 Empresas enlazadas</h3>
+            <p><a href="#">AI Football Analytics</a></p>
+            <p><a href="#">Open Sports Data</a></p>
+            <p><a href="#">Smart Scout Tech</a></p>
+        </div>
+
+        <div class="card">
+            <h3>💰 Inversiones</h3>
+            <p>Proyectos de inteligencia artificial aplicada al fútbol.</p>
+            <p>Plataformas de análisis deportivo.</p>
+            <p>Innovación tecnológica en scouting.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// Envío con fetch para no mostrar la página blanca y redirigir a gracias.html
+const form = document.getElementById('contactForm');
+form.addEventListener('submit', function(e){
+    e.preventDefault(); // evita recargar
+    const data = new FormData(form);
+    fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    }).then(response=>{
+        // Redirigir a página de éxito
+        window.location.href = 'gracias.html';
+    }).catch(error=>{
+        alert('Hubo un error al enviar el formulario. Intenta de nuevo.');
+    });
+});
+</script>
+
+</body>
+</html>
